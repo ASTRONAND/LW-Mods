@@ -69,7 +69,7 @@ namespace LWGlass.Client
         protected override ChildPlacementInfo GenerateChildPlacementInfo()
         {
             ChildPlacementInfo childPlacementInfo = new ChildPlacementInfo();
-            childPlacementInfo.Points = new FixedPlacingPoint[SizeZ * SizeX];
+            childPlacementInfo.Points = new FixedPlacingPoint[SizeZ * SizeX * 2];
             
             int i = 0;
             for (int iX = 0; iX < SizeX; iX++)
@@ -78,11 +78,42 @@ namespace LWGlass.Client
                 {
                     childPlacementInfo.Points[i++] = new FixedPlacingPoint()
                     {
-                        Position = new Vector3(iX, .5f, iZ)
+                        Position = new Vector3(iX, .5f, iZ),
+                        UpDirection = new Vector3(0, 1, 0)
+                    };
+                    childPlacementInfo.Points[i++] = new FixedPlacingPoint()
+                    {
+                        Position = new Vector3(iX, 0, iZ),
+                        UpDirection = new Vector3(0, -1, 0)
                     };
                 }
             }
-            
+            //for (int SX1 = 0; SX1 < SizeX; SX1++)
+            //{
+            //    childPlacementInfo.Points[i++] = new FixedPlacingPoint()
+            //    {
+            //        Position = new Vector3(SX1, 0, -.3f ),
+            //        UpDirection = new Vector3(0, 0, -1)
+            //    };
+            //    childPlacementInfo.Points[i++] = new FixedPlacingPoint()
+            //    {
+            //        Position = new Vector3(SX1, 0, SizeZ+.3f ),
+            //        UpDirection = new Vector3(0, 0, 1)
+            //    };
+            //}
+            //for (int SX1 = 0; SX1 < SizeZ; SX1++)
+            //{
+            //    childPlacementInfo.Points[i++] = new FixedPlacingPoint()
+            //    {
+            //        Position = new Vector3(-.3f, 0, SX1 ),
+            //        UpDirection = new Vector3(-1, 0, 0)
+            //    };
+            //    childPlacementInfo.Points[i++] = new FixedPlacingPoint()
+            //    {
+            //        Position = new Vector3(SizeX+.3f, 0, SX1 ),
+            //        UpDirection = new Vector3(1, 0, 0)
+            //    };
+            //}
             return childPlacementInfo;
         }
         protected override IDecoration[] GenerateDecorations(Transform parentToCreateDecorationsUnder)
