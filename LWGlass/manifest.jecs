@@ -1,7 +1,0 @@
-ID: LWGlass
-Name: LWGlass
-Author: Astronand
-Version: 1.0.0
-Priority: 0
-Dependencies:
-    - AssemblyLoader

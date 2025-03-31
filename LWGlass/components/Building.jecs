@@ -1,7 +1,0 @@
-﻿Glass:
-    column: "Miscellaneous"
-    category: "Structural"
-    prefab:
-    clientCode: LWGlass.Client.Glass
-    placingRules:
-        allowWorldRotation: false
