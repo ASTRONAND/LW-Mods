@@ -1,5 +1,6 @@
 ﻿using JimmysUnityUtilities;
 using LogicAPI.Data;
+using LogicSettings;
 using LogicWorld.Building.Overhaul;
 using LogicWorld.ClientCode;
 using LogicWorld.ClientCode.Resizing;
@@ -20,7 +21,7 @@ namespace LWGlass.Client
         IResizableX,
         IResizableZ
     {
-        [Setting_SliderFloat("LWGlass.LWGlass.GlassTransparency")]
+        [Setting_SliderFloat("LWGlass.Glass.GlassTransparency")]
         public static float GlassTransparency {
             get => _glassTransparency;
             set => _glassTransparency = value;
