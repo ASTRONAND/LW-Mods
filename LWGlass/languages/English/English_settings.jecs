@@ -1,4 +1,4 @@
-LWGlass.Glass.GlassTransparency: "Glass Transparency"
+MHG.SettingsMenu.Pages.Graphics.Headings.LW_Glass: "Glass Transparency"
 
 LWGlass.Glass.GlassTransparency.Description: """
     Transparency of the Glass Material.
