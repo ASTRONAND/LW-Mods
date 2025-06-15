@@ -20,6 +20,12 @@ namespace LWGlass.Client
         IResizableX,
         IResizableZ
     {
+        [Setting_SliderFloat("LWGlass.LWGlass.GlassTransparency")]
+        public static float GlassTransparency {
+            get => _glassTransparency;
+            set => _glassTransparency = value;
+        }
+        
         private int previousSizeX;
         private int previousSizeZ;
 
@@ -125,7 +131,7 @@ namespace LWGlass.Client
             var meshFilter = myGameObject.AddComponent<MeshFilter>();
             meshFilter.sharedMesh = LogicWorld.References.Meshes.OriginCube;
             var meshRenderer = myGameObject.AddComponent<MeshRenderer>();
-            meshRenderer.sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.2f);
+            meshRenderer.sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) _glassTransparency/10);
             return new IDecoration[]
             {
                 new Decoration()
