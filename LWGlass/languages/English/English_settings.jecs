@@ -1,0 +1,6 @@
+LW_Mods.LW_Glass.GlassTransparency: "Glass Transparency"
+
+LW_Mods.LW_Glass.GlassTransparency.Description: """
+    Transparency of the Glass Material.
+    \* No specified length.
+    """
