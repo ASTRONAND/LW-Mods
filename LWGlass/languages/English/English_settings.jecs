@@ -1,5 +1,5 @@
-LWGlass.LWGlass.GlassTransparency: "Glass Transparency"
+LWGlass.Glass.GlassTransparency: "Glass Transparency"
 
-LW_Mods.LW_Glass.GlassTransparency.Description: """
+LWGlass.Glass.GlassTransparency.Description: """
     Transparency of the Glass Material.
     """
