@@ -26,6 +26,7 @@ namespace LWGlass.Client
             get => _glassTransparency;
             set => _glassTransparency = value;
         }
+        private static float _glassTransparency = 15;
         
         private int previousSizeX;
         private int previousSizeZ;
