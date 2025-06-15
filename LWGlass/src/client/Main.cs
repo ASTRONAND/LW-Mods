@@ -61,13 +61,13 @@ namespace LWGlass.Client
         {
             Data.Color = new Color24(255, 255, 255);
             GameObject obj = Decorations[0].DecorationObject;
-            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.7f);
+            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) _glassTranparency/10);
         }
 
         protected override void DataUpdate()
         {
             GameObject obj = Decorations[0].DecorationObject;
-            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.2f);
+            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) _glassTranparency/10);
             if (SizeX == previousSizeX && SizeZ == previousSizeZ)
                 return;
             previousSizeX = SizeX;
