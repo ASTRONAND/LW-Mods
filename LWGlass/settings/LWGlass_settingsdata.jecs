@@ -1,4 +1,4 @@
-RetroLights.DisplayEffect.DisplayIntensity:
+LWGlass.Glass.GlassTransparency:
     Page: Graphics
     Heading: LW_Glass
     Min: 15
