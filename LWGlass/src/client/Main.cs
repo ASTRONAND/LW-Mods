@@ -45,8 +45,7 @@ namespace LWGlass.Client
                 var (addr, data) = kvp;
                 if (data.Data.Type == glass)
                 {
-                    GameObject obj = Decorations[0].DecorationObject;
-                    obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) _glassTransparency/10);
+                    mainWorld.Renderer.Entities.GetClientCode(addr).QueueFrameUpdate();
                 }
             }
         }
