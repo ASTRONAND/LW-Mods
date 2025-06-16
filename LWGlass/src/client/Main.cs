@@ -24,9 +24,32 @@ namespace LWGlass.Client
         [Setting_SliderFloat("LWGlass.Glass.GlassTransparency")]
         public static float GlassTransparency {
             get => _glassTransparency;
-            set => _glassTransparency = value;
+            set
+            {
+                _glassTransparency = value;
+                updateGlassTransparency();
+            }
         }
         private static float _glassTransparency = 15;
+
+        protected static void updateGlassTransparency()
+        {
+            var world = Instances.MainWorld;
+            if (world == null)
+            {
+                return;
+            }
+            var glass = world.ComponentType("LWGlass.Client.Glass");
+            foreach(var kvp in world.Data.AllComponents)
+            {
+                var (addr, data) = kvp;
+                if (data.Data.Type == glass)
+                {
+                    GameObject obj = Decorations[0].DecorationObject;
+                    obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) _glassTransparency/10);
+                }
+            }
+        }
         
         private int previousSizeX;
         private int previousSizeZ;
