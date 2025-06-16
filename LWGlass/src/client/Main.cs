@@ -39,13 +39,13 @@ namespace LWGlass.Client
             {
                 return;
             }
-            var glass = world.ComponentType("LWGlass.Client.Glass");
+            var glass = world.ComponentTypes.GetComponentType("LWGlass.Client.Glass");
             foreach(var kvp in world.Data.AllComponents)
             {
                 var (addr, data) = kvp;
                 if (data.Data.Type == glass)
                 {
-                    mainWorld.Renderer.Entities.GetClientCode(addr).QueueFrameUpdate();
+                    world.Renderer.Entities.GetClientCode(addr).QueueFrameUpdate();
                 }
             }
         }
