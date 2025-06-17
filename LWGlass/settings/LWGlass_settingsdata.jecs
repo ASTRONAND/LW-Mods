@@ -1,0 +1,8 @@
+LWGlass.Glass.GlassTransparency:
+    Page: Graphics
+    Heading: LW_Glass
+    Min: 15
+    Max: 85
+    SliderInterval: 1
+    DecimalPlacesToDisplay: 0
+    PerformanceImpact: Low

@@ -1,5 +1,6 @@
 ﻿using JimmysUnityUtilities;
 using LogicAPI.Data;
+using LogicSettings;
 using LogicWorld.Building.Overhaul;
 using LogicWorld.ClientCode;
 using LogicWorld.ClientCode.Resizing;
@@ -20,6 +21,36 @@ namespace LWGlass.Client
         IResizableX,
         IResizableZ
     {
+        [Setting_SliderFloat("LWGlass.Glass.GlassTransparency")]
+        public static float GlassTransparency
+        {
+            get => _glassTransparency;
+            set
+            {
+                _glassTransparency = (float) value;
+                updateGlassTransparency();
+            }
+        }
+        private static float _glassTransparency = 50;
+
+        protected static void updateGlassTransparency()
+        {
+            var world = Instances.MainWorld;
+            if (world == null)
+            {
+                return;
+            }
+            var glass = world.ComponentTypes.GetComponentType("LWGlass.Glass");
+            foreach(var kvp in world.Data.AllComponents)
+            {
+                var (address, data) = kvp;
+                if (data.Data.Type == glass)
+                {
+                    world.Renderer.Entities.GetClientCode(address).QueueDataUpdate();
+                }
+            }
+        }
+        
         private int previousSizeX;
         private int previousSizeZ;
 
@@ -47,19 +78,24 @@ namespace LWGlass.Client
         }
         public int MinZ => 1;
         public int MaxZ => 80;
-        public float GridIntervalZ => 1f; 
+        public float GridIntervalZ => 1f;
+        
+        protected Material setSharedMaterial()
+        {
+            return LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, (float) GlassTransparency/100);
+        }
         
         protected override void OnComponentImaged()
         {
             Data.Color = new Color24(255, 255, 255);
             GameObject obj = Decorations[0].DecorationObject;
-            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.7f);
+            obj.GetComponent<MeshRenderer>().sharedMaterial = setSharedMaterial();
         }
 
         protected override void DataUpdate()
         {
             GameObject obj = Decorations[0].DecorationObject;
-            obj.GetComponent<MeshRenderer>().sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.2f);
+            obj.GetComponent<MeshRenderer>().sharedMaterial = setSharedMaterial();
             if (SizeX == previousSizeX && SizeZ == previousSizeZ)
                 return;
             previousSizeX = SizeX;
@@ -125,7 +161,7 @@ namespace LWGlass.Client
             var meshFilter = myGameObject.AddComponent<MeshFilter>();
             meshFilter.sharedMesh = LogicWorld.References.Meshes.OriginCube;
             var meshRenderer = myGameObject.AddComponent<MeshRenderer>();
-            meshRenderer.sharedMaterial = LogicWorld.References.MaterialsCache.StandardUnlitColorTransparent(Color, 0.2f);
+            meshRenderer.sharedMaterial = setSharedMaterial();
             return new IDecoration[]
             {
                 new Decoration()

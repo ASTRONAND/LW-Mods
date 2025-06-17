@@ -1,0 +1,6 @@
+MHG.SettingsMenu.Pages.Graphics.Headings.LW_Glass: "Mod: Glass"
+LWGlass.Glass.GlassTransparency: "Transparency"
+
+LWGlass.Glass.GlassTransparency.Description: """
+    Transparency of the Glass Material.
+    """
